@@ -1,0 +1,9 @@
+type Designer {
+  id: ID!
+  name: String!
+  bio: String
+  website: String
+  games: [Game!]!
+  createdAt: String!
+  updatedAt: String!
+}

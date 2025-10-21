@@ -1,0 +1,10 @@
+type Review {
+  id: ID!
+  rating: Int!
+  title: String
+  comment: String
+  user: User!
+  game: Game!
+  createdAt: String!
+  updatedAt: String!
+}

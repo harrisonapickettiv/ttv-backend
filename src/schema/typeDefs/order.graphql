@@ -1,0 +1,34 @@
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+type Order {
+  id: ID!
+  orderNumber: String!
+  status: OrderStatus!
+  totalAmount: Float!
+  user: User!
+  items: [OrderItem!]!
+  shippingName: String!
+  shippingAddress: String!
+  shippingCity: String!
+  shippingState: String!
+  shippingZip: String!
+  shippingCountry: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type OrderItem {
+  id: ID!
+  quantity: Int!
+  priceAtTime: Float!
+  order: Order!
+  game: Game!
+  createdAt: String!
+  updatedAt: String!
+}

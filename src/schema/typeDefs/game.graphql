@@ -1,0 +1,21 @@
+type Game {
+  id: ID!
+  name: String!
+  description: String
+  minPlayers: Int!
+  maxPlayers: Int!
+  playtime: Int!
+  price: Float!
+  stock: Int!
+  imageUrl: String
+  publisherId: ID!
+  publisher: Publisher!
+  categories: [Category!]!
+  mechanics: [Mechanic!]!
+  designers: [Designer!]!
+  reviews: [Review!]!
+  averageRating: Float
+  reviewCount: Int!
+  createdAt: String!
+  updatedAt: String!
+}

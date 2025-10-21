@@ -1,0 +1,9 @@
+type Publisher {
+  id: ID!
+  name: String!
+  country: String
+  website: String
+  games: [Game!]!
+  createdAt: String!
+  updatedAt: String!
+}

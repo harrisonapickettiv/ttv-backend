@@ -1,0 +1,17 @@
+enum UserRole {
+  CUSTOMER
+  ADMIN
+}
+
+type User {
+  id: ID!
+  email: String!
+  firstName: String!
+  lastName: String!
+  role: UserRole!
+  reviews: [Review!]!
+  cart: Cart
+  orders: [Order!]!
+  createdAt: String!
+  updatedAt: String!
+}

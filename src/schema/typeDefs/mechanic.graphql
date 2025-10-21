@@ -1,0 +1,9 @@
+type Mechanic {
+  id: ID!
+  name: String!
+  slug: String!
+  description: String
+  games: [Game!]!
+  createdAt: String!
+  updatedAt: String!
+}

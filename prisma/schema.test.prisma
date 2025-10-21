@@ -1,0 +1,257 @@
+// Test schema using SQLite (copy of schema.prisma but with sqlite provider)
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma-test"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./test.db"
+}
+
+// ============================================================================
+// CORE GAME MODELS
+// ============================================================================
+
+model Game {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  minPlayers  Int
+  maxPlayers  Int
+  playtime    Int      // in minutes
+  price       Float
+  stock       Int      @default(0)
+  imageUrl    String?
+  publisherId String
+  
+  // Relations
+  publisher   Publisher        @relation(fields: [publisherId], references: [id])
+  categories  GameCategory[]
+  mechanics   GameMechanic[]
+  designers   GameDesigner[]
+  reviews     Review[]
+  cartItems   CartItem[]
+  orderItems  OrderItem[]
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([publisherId])
+}
+
+model Publisher {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  country   String?
+  website   String?
+  games     Game[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ============================================================================
+// GAME METADATA (Categories, Mechanics, Designers)
+// ============================================================================
+
+model Category {
+  id          String         @id @default(cuid())
+  name        String         @unique
+  slug        String         @unique
+  description String?
+  games       GameCategory[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model Mechanic {
+  id          String         @id @default(cuid())
+  name        String         @unique
+  slug        String         @unique
+  description String?
+  games       GameMechanic[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model Designer {
+  id        String         @id @default(cuid())
+  name      String
+  bio       String?
+  website   String?
+  games     GameDesigner[]
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+}
+
+// ============================================================================
+// JUNCTION TABLES (Many-to-Many)
+// ============================================================================
+
+model GameCategory {
+  gameId     String
+  categoryId String
+  game       Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([gameId, categoryId])
+  @@index([categoryId])
+}
+
+model GameMechanic {
+  gameId     String
+  mechanicId String
+  game       Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  mechanic   Mechanic @relation(fields: [mechanicId], references: [id], onDelete: Cascade)
+
+  @@id([gameId, mechanicId])
+  @@index([mechanicId])
+}
+
+model GameDesigner {
+  gameId     String
+  designerId String
+  game       Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  designer   Designer @relation(fields: [designerId], references: [id], onDelete: Cascade)
+
+  @@id([gameId, designerId])
+  @@index([designerId])
+}
+
+// ============================================================================
+// USER & AUTHENTICATION
+// ============================================================================
+
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  passwordHash  String
+  firstName     String
+  lastName      String
+  role          UserRole @default(CUSTOMER)
+  
+  // Relations
+  reviews       Review[]
+  cart          Cart?
+  orders        Order[]
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([email])
+}
+
+enum UserRole {
+  CUSTOMER
+  ADMIN
+}
+
+// ============================================================================
+// REVIEWS & RATINGS
+// ============================================================================
+
+model Review {
+  id        String   @id @default(cuid())
+  rating    Int      // 1-5 stars
+  title     String?
+  comment   String?
+  userId    String
+  gameId    String
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  game      Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, gameId]) // One review per user per game
+  @@index([gameId])
+  @@index([userId])
+}
+
+// ============================================================================
+// SHOPPING CART
+// ============================================================================
+
+model Cart {
+  id        String     @id @default(cuid())
+  userId    String     @unique
+  
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items     CartItem[]
+  
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model CartItem {
+  id        String   @id @default(cuid())
+  quantity  Int      @default(1)
+  cartId    String
+  gameId    String
+  
+  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  game      Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([cartId, gameId]) // One entry per game per cart
+  @@index([gameId])
+}
+
+// ============================================================================
+// ORDERS & CHECKOUT
+// ============================================================================
+
+model Order {
+  id            String      @id @default(cuid())
+  orderNumber   String      @unique
+  status        OrderStatus @default(PENDING)
+  totalAmount   Float
+  
+  userId        String
+  user          User        @relation(fields: [userId], references: [id])
+  
+  items         OrderItem[]
+  
+  // Shipping info
+  shippingName    String
+  shippingAddress String
+  shippingCity    String
+  shippingState   String
+  shippingZip     String
+  shippingCountry String
+  
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@index([userId])
+  @@index([orderNumber])
+  @@index([status])
+}
+
+model OrderItem {
+  id            String   @id @default(cuid())
+  quantity      Int
+  priceAtTime   Float    // Store price at time of purchase
+  orderId       String
+  gameId        String
+  
+  order         Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  game          Game     @relation(fields: [gameId], references: [id])
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([orderId])
+  @@index([gameId])
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}

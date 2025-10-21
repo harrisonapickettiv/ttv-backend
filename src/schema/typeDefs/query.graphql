@@ -1,0 +1,39 @@
+type Query {
+  # Basic
+  hello: String!
+
+  # Games
+  game(id: ID!): Game
+  games: [Game!]!
+
+  # Publishers
+  publisher(id: ID!): Publisher
+  publishers: [Publisher!]!
+
+  # Categories
+  category(id: ID, slug: String): Category
+  categories: [Category!]!
+
+  # Mechanics
+  mechanic(id: ID, slug: String): Mechanic
+  mechanics: [Mechanic!]!
+
+  # Designers
+  designer(id: ID!): Designer
+  designers: [Designer!]!
+
+  # Users (require authentication)
+  me: User
+  user(id: ID!): User
+
+  # Reviews
+  review(id: ID!): Review
+  reviews(gameId: ID): [Review!]!
+
+  # Cart (require authentication)
+  myCart: Cart
+
+  # Orders (require authentication)
+  myOrders: [Order!]!
+  order(id: ID!): Order
+}

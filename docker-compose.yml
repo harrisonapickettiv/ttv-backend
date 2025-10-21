@@ -1,0 +1,24 @@
+# Local Development Database
+# This docker-compose.yml is for local development only.
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: tabletop-vault-db
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: tabletop_user
+      POSTGRES_PASSWORD: tabletop_password
+      POSTGRES_DB: tabletop_vault
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U tabletop_user -d tabletop_vault']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+    driver: local

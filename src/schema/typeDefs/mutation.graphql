@@ -1,0 +1,198 @@
+# ============================================================================
+# INPUT TYPES
+# ============================================================================
+
+# Game inputs
+input CreateGameInput {
+  name: String!
+  description: String
+  minPlayers: Int!
+  maxPlayers: Int!
+  playtime: Int!
+  price: Float!
+  stock: Int!
+  imageUrl: String
+  publisherId: ID!
+  categoryIds: [ID!]
+  mechanicIds: [ID!]
+  designerIds: [ID!]
+}
+
+input UpdateGameInput {
+  name: String
+  description: String
+  minPlayers: Int
+  maxPlayers: Int
+  playtime: Int
+  price: Float
+  stock: Int
+  imageUrl: String
+  publisherId: ID
+  categoryIds: [ID!]
+  mechanicIds: [ID!]
+  designerIds: [ID!]
+}
+
+# Publisher inputs
+input CreatePublisherInput {
+  name: String!
+  country: String
+  website: String
+}
+
+input UpdatePublisherInput {
+  name: String
+  country: String
+  website: String
+}
+
+# Category inputs
+input CreateCategoryInput {
+  name: String!
+  slug: String!
+  description: String
+}
+
+input UpdateCategoryInput {
+  name: String
+  slug: String
+  description: String
+}
+
+# Mechanic inputs
+input CreateMechanicInput {
+  name: String!
+  slug: String!
+  description: String
+}
+
+input UpdateMechanicInput {
+  name: String
+  slug: String
+  description: String
+}
+
+# Designer inputs
+input CreateDesignerInput {
+  name: String!
+  bio: String
+  website: String
+}
+
+input UpdateDesignerInput {
+  name: String
+  bio: String
+  website: String
+}
+
+# User inputs
+input RegisterInput {
+  email: String!
+  password: String!
+  firstName: String!
+  lastName: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+# Review inputs
+input CreateReviewInput {
+  gameId: ID!
+  rating: Int!
+  title: String
+  comment: String
+}
+
+input UpdateReviewInput {
+  rating: Int
+  title: String
+  comment: String
+}
+
+# Cart inputs
+input AddToCartInput {
+  gameId: ID!
+  quantity: Int!
+}
+
+input UpdateCartItemInput {
+  cartItemId: ID!
+  quantity: Int!
+}
+
+# Order inputs
+input CreateOrderInput {
+  shippingName: String!
+  shippingAddress: String!
+  shippingCity: String!
+  shippingState: String!
+  shippingZip: String!
+  shippingCountry: String!
+}
+
+input UpdateOrderStatusInput {
+  status: OrderStatus!
+}
+
+# ============================================================================
+# RESPONSE TYPES
+# ============================================================================
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+# ============================================================================
+# MUTATIONS
+# ============================================================================
+
+type Mutation {
+  # Authentication
+  register(input: RegisterInput!): AuthPayload!
+  login(input: LoginInput!): AuthPayload!
+
+  # Game mutations (admin only)
+  createGame(input: CreateGameInput!): Game!
+  updateGame(id: ID!, input: UpdateGameInput!): Game!
+  deleteGame(id: ID!): Boolean!
+
+  # Publisher mutations (admin only)
+  createPublisher(input: CreatePublisherInput!): Publisher!
+  updatePublisher(id: ID!, input: UpdatePublisherInput!): Publisher!
+  deletePublisher(id: ID!): Boolean!
+
+  # Category mutations (admin only)
+  createCategory(input: CreateCategoryInput!): Category!
+  updateCategory(id: ID!, input: UpdateCategoryInput!): Category!
+  deleteCategory(id: ID!): Boolean!
+
+  # Mechanic mutations (admin only)
+  createMechanic(input: CreateMechanicInput!): Mechanic!
+  updateMechanic(id: ID!, input: UpdateMechanicInput!): Mechanic!
+  deleteMechanic(id: ID!): Boolean!
+
+  # Designer mutations (admin only)
+  createDesigner(input: CreateDesignerInput!): Designer!
+  updateDesigner(id: ID!, input: UpdateDesignerInput!): Designer!
+  deleteDesigner(id: ID!): Boolean!
+
+  # Review mutations (authenticated users)
+  createReview(input: CreateReviewInput!): Review!
+  updateReview(id: ID!, input: UpdateReviewInput!): Review!
+  deleteReview(id: ID!): Boolean!
+
+  # Cart mutations (authenticated users)
+  addToCart(input: AddToCartInput!): Cart!
+  updateCartItem(input: UpdateCartItemInput!): Cart!
+  removeFromCart(cartItemId: ID!): Cart!
+  clearCart: Boolean!
+
+  # Order mutations (authenticated users)
+  createOrder(input: CreateOrderInput!): Order!
+  updateOrderStatus(orderId: ID!, input: UpdateOrderStatusInput!): Order! # admin only
+  cancelOrder(orderId: ID!): Order!
+}

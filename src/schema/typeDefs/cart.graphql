@@ -1,0 +1,16 @@
+type Cart {
+  id: ID!
+  user: User!
+  items: [CartItem!]!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type CartItem {
+  id: ID!
+  quantity: Int!
+  cart: Cart!
+  game: Game!
+  createdAt: String!
+  updatedAt: String!
+}

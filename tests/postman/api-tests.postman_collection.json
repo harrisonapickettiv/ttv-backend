@@ -1,0 +1,1929 @@
+{
+	"info": {
+		"_postman_id": "ab9bba4e-1a3a-4748-8998-1a804256e78d",
+		"name": "Tabletop Vault API - Comprehensive Automated Tests",
+		"description": "Comprehensive automated test suite that validates all API endpoints with proper assertions and ID chaining",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49441453"
+	},
+	"item": [
+		{
+			"name": "01-Setup",
+			"item": [
+				{
+					"name": "Hello - Health Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"const response = pm.response.json();",
+									"pm.test(\"Hello query works\", () => {",
+									"    pm.expect(response.data.hello).to.be.a('string');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query { hello }",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Publishers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Publishers array returned\", () => {",
+									"    pm.expect(response.data.publishers).to.be.an('array');",
+									"    pm.expect(response.data.publishers.length).to.be.greaterThan(0);",
+									"});",
+									"",
+									"if (response.data.publishers.length > 0) {",
+									"    pm.collectionVariables.set(\"publisherId\", response.data.publishers[0].id);",
+									"    console.log(\"✓ Saved publisherId:\", response.data.publishers[0].id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query { publishers { id name country website } }",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Categories",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+									"pm.test(\"Categories returned\", () => {",
+									"    pm.expect(response.data.categories).to.be.an('array');",
+									"    pm.expect(response.data.categories.length).to.be.greaterThan(1);",
+									"});",
+									"",
+									"if (response.data.categories.length >= 2) {",
+									"    pm.collectionVariables.set(\"categoryId1\", response.data.categories[0].id);",
+									"    pm.collectionVariables.set(\"categoryId2\", response.data.categories[1].id);",
+									"    pm.collectionVariables.set(\"categorySlug\", response.data.categories[0].slug);",
+									"    console.log(\"✓ Saved category IDs and slug\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query { categories { id name slug games { id name } } }",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Mechanics",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+									"pm.test(\"Mechanics returned\", () => {",
+									"    pm.expect(response.data.mechanics).to.be.an('array');",
+									"    pm.expect(response.data.mechanics.length).to.be.greaterThan(1);",
+									"});",
+									"",
+									"if (response.data.mechanics.length >= 2) {",
+									"    pm.collectionVariables.set(\"mechanicId1\", response.data.mechanics[0].id);",
+									"    pm.collectionVariables.set(\"mechanicId2\", response.data.mechanics[1].id);",
+									"    pm.collectionVariables.set(\"mechanicSlug\", response.data.mechanics[0].slug);",
+									"    console.log(\"✓ Saved mechanic IDs and slug\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query { mechanics { id name slug games { id name } } }",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Designers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+									"pm.test(\"Designers returned\", () => {",
+									"    pm.expect(response.data.designers).to.be.an('array');",
+									"    pm.expect(response.data.designers.length).to.be.greaterThan(0);",
+									"});",
+									"",
+									"if (response.data.designers.length > 0) {",
+									"    pm.collectionVariables.set(\"designerId\", response.data.designers[0].id);",
+									"    console.log(\"✓ Saved designerId:\", response.data.designers[0].id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query { designers { id name bio games { id name } } }",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Games",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+									"pm.test(\"Games returned with nested data\", () => {",
+									"    pm.expect(response.data.games).to.be.an('array');",
+									"    pm.expect(response.data.games.length).to.be.greaterThan(0);",
+									"    const game = response.data.games[0];",
+									"    pm.expect(game.publisher).to.have.property('name');",
+									"    pm.expect(game.categories).to.be.an('array');",
+									"    pm.expect(game.mechanics).to.be.an('array');",
+									"    pm.expect(game.designers).to.be.an('array');",
+									"});",
+									"",
+									"if (response.data.games.length > 0) {",
+									"    pm.collectionVariables.set(\"gameId\", response.data.games[0].id);",
+									"    console.log(\"✓ Saved gameId:\", response.data.games[0].id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query { games { id name price stock publisher { id name } categories { id name slug } mechanics { id name slug } designers { id name } averageRating reviewCount } }",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "02-Authentication",
+			"item": [
+				{
+					"name": "Login as Bob (Customer)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+									"pm.test(\"Login successful with token\", () => {",
+									"    pm.expect(response.data.login.token).to.be.a('string');",
+									"    pm.expect(response.data.login.user.role).to.equal('CUSTOMER');",
+									"});",
+									"",
+									"if (response.data?.login?.token) {",
+									"    pm.collectionVariables.set(\"customerToken\", response.data.login.token);",
+									"    pm.collectionVariables.set(\"customerId\", response.data.login.user.id);",
+									"    console.log(\"✓ Customer logged in successfully\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation Login($input: LoginInput!) { login(input: $input) { token user { id email firstName lastName role } } }",
+								"variables": "{\n  \"input\": {\n    \"email\": \"bob@example.com\",\n    \"password\": \"password123\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login as Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+									"pm.test(\"Admin login successful\", () => {",
+									"    pm.expect(response.data.login.token).to.be.a('string');",
+									"    pm.expect(response.data.login.user.role).to.equal('ADMIN');",
+									"});",
+									"",
+									"if (response.data?.login?.token) {",
+									"    pm.collectionVariables.set(\"adminToken\", response.data.login.token);",
+									"    pm.collectionVariables.set(\"adminId\", response.data.login.user.id);",
+									"    console.log(\"✓ Admin logged in successfully\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation Login($input: LoginInput!) { login(input: $input) { token user { id email role } } }",
+								"variables": "{\n  \"input\": {\n    \"email\": \"admin@tabletopvault.com\",\n    \"password\": \"admin123\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current User (Me)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+									"pm.test(\"User data returned\", () => {",
+									"    pm.expect(response.data.me).to.have.property('email');",
+									"    pm.expect(response.data.me).to.have.property('role');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{customerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query { me { id email firstName lastName role } }",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "03-Queries",
+			"item": [
+				{
+					"name": "Get Game by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+									"pm.test(\"Game details returned\", () => {",
+									"    const game = response.data.game;",
+									"    pm.expect(game).to.be.an('object');",
+									"    pm.expect(game.id).to.equal(pm.collectionVariables.get('gameId'));",
+									"    pm.expect(game.publisher).to.have.property('name');",
+									"    pm.expect(game.reviews).to.be.an('array');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetGame($id: ID!) { game(id: $id) { id name description price stock publisher { name } categories { name } mechanics { name } designers { name } reviews { id rating title } averageRating reviewCount } }",
+								"variables": "{ \"id\": \"{{gameId}}\" }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Publisher by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Publisher details returned\", () => {",
+									"    pm.expect(response.data.publisher).to.be.an('object');",
+									"    pm.expect(response.data.publisher.games).to.be.an('array');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetPublisher($id: ID!) { publisher(id: $id) { id name country website games { id name price } } }",
+								"variables": "{ \"id\": \"{{publisherId}}\" }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Category by Slug",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Category found by slug\", () => {",
+									"    pm.expect(response.data.category).to.be.an('object');",
+									"    pm.expect(response.data.category.slug).to.equal(pm.collectionVariables.get('categorySlug'));",
+									"    pm.expect(response.data.category.games).to.be.an('array');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetCategoryBySlug($slug: String) { category(slug: $slug) { id name slug description games { id name price } } }",
+								"variables": "{ \"slug\": \"{{categorySlug}}\" }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Mechanic by Slug",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Mechanic found by slug\", () => {",
+									"    pm.expect(response.data.mechanic).to.be.an('object');",
+									"    pm.expect(response.data.mechanic.games).to.be.an('array');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetMechanicBySlug($slug: String) { mechanic(slug: $slug) { id name slug games { id name } } }",
+								"variables": "{ \"slug\": \"{{mechanicSlug}}\" }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Designer by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Designer details returned\", () => {",
+									"    pm.expect(response.data.designer).to.be.an('object');",
+									"    pm.expect(response.data.designer.games).to.be.an('array');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetDesigner($id: ID!) { designer(id: $id) { id name bio games { id name } } }",
+								"variables": "{ \"id\": \"{{designerId}}\" }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Reviews",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Reviews returned\", () => {",
+									"    pm.expect(response.data.reviews).to.be.an('array');",
+									"});",
+									"",
+									"if (response.data.reviews.length > 0) {",
+									"    pm.collectionVariables.set(\"reviewId\", response.data.reviews[0].id);",
+									"    console.log(\"✓ Saved reviewId\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query { reviews { id rating title comment user { firstName lastName } game { name } } }",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "04-Customer-Mutations",
+			"item": [
+				{
+					"name": "Create Review",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Review created successfully\", () => {",
+									"    pm.expect(response.data.createReview).to.be.an('object');",
+									"    pm.expect(response.data.createReview.rating).to.equal(5);",
+									"});",
+									"",
+									"if (response.data?.createReview?.id) {",
+									"    pm.collectionVariables.set(\"newReviewId\", response.data.createReview.id);",
+									"    console.log(\"✓ Created review:\", response.data.createReview.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{customerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation CreateReview($input: CreateReviewInput!) { createReview(input: $input) { id rating title comment game { name } } }",
+								"variables": "{ \"input\": { \"gameId\": \"{{gameId}}\", \"rating\": 5, \"title\": \"Automated Test Review\", \"comment\": \"This review was created by the automated test suite\" } }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Review",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Review updated successfully\", () => {",
+									"    pm.expect(response.data.updateReview.rating).to.equal(4);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{customerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation UpdateReview($id: ID!, $input: UpdateReviewInput!) { updateReview(id: $id, input: $input) { id rating title comment } }",
+								"variables": "{ \"id\": \"{{newReviewId}}\", \"input\": { \"rating\": 4, \"comment\": \"Updated: Still good but found some issues\" } }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Cart returned\", () => {",
+									"    pm.expect(response.data.myCart).to.be.an('object');",
+									"    pm.expect(response.data.myCart.items).to.be.an('array');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{customerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query { myCart { id items { id quantity game { name price } } } }",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add to Cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Item added to cart\", () => {",
+									"    pm.expect(response.data.addToCart.items).to.be.an('array');",
+									"    pm.expect(response.data.addToCart.items.length).to.be.greaterThan(0);",
+									"});",
+									"",
+									"const lastItem = response.data.addToCart.items[response.data.addToCart.items.length - 1];",
+									"pm.collectionVariables.set(\"cartItemId\", lastItem.id);",
+									"console.log(\"✓ Added to cart, cartItemId:\", lastItem.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{customerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AddToCart($input: AddToCartInput!) { addToCart(input: $input) { id items { id quantity game { name price } } } }",
+								"variables": "{ \"input\": { \"gameId\": \"{{gameId}}\", \"quantity\": 1 } }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Cart Item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Cart item quantity updated\", () => {",
+									"    const item = response.data.updateCartItem.items.find(i => i.id === pm.collectionVariables.get('cartItemId'));",
+									"    pm.expect(item.quantity).to.equal(2);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{customerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation UpdateCartItem($input: UpdateCartItemInput!) { updateCartItem(input: $input) { id items { id quantity game { name } } } }",
+								"variables": "{ \"input\": { \"cartItemId\": \"{{cartItemId}}\", \"quantity\": 2 } }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Order created successfully\", () => {",
+									"    pm.expect(response.data.createOrder).to.be.an('object');",
+									"    pm.expect(response.data.createOrder.orderNumber).to.be.a('string');",
+									"    pm.expect(response.data.createOrder.status).to.equal('PENDING');",
+									"});",
+									"",
+									"if (response.data?.createOrder?.id) {",
+									"    pm.collectionVariables.set(\"orderId\", response.data.createOrder.id);",
+									"    console.log(\"✓ Created order:\", response.data.createOrder.orderNumber);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{customerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation CreateOrder($input: CreateOrderInput!) { createOrder(input: $input) { id orderNumber status totalAmount items { quantity priceAtTime game { name } } shippingName shippingAddress } }",
+								"variables": "{ \"input\": { \"shippingName\": \"Test User\", \"shippingAddress\": \"123 Test St\", \"shippingCity\": \"Portland\", \"shippingState\": \"OR\", \"shippingZip\": \"97201\", \"shippingCountry\": \"USA\" } }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Orders",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Orders returned\", () => {",
+									"    pm.expect(response.data.myOrders).to.be.an('array');",
+									"    pm.expect(response.data.myOrders.length).to.be.greaterThan(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{customerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query { myOrders { id orderNumber status totalAmount items { quantity priceAtTime game { name } } } }",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Order details returned\", () => {",
+									"    pm.expect(response.data.order).to.be.an('object');",
+									"    pm.expect(response.data.order.id).to.equal(pm.collectionVariables.get('orderId'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{customerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetOrder($id: ID!) { order(id: $id) { id orderNumber status totalAmount items { quantity game { name } } shippingAddress } }",
+								"variables": "{ \"id\": \"{{orderId}}\" }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "05-Admin-Mutations",
+			"item": [
+				{
+					"name": "Create Publisher",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Publisher created\", () => {",
+									"    pm.expect(response.data.createPublisher).to.be.an('object');",
+									"    pm.expect(response.data.createPublisher.name).to.equal('Test Publisher');",
+									"});",
+									"",
+									"if (response.data?.createPublisher?.id) {",
+									"    pm.collectionVariables.set(\"newPublisherId\", response.data.createPublisher.id);",
+									"    console.log(\"✓ Created publisher\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation CreatePublisher($input: CreatePublisherInput!) { createPublisher(input: $input) { id name country website } }",
+								"variables": "{ \"input\": { \"name\": \"Test Publisher\", \"country\": \"USA\", \"website\": \"https://test.com\" } }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Category created\", () => {",
+									"    pm.expect(response.data.createCategory).to.be.an('object');",
+									"});",
+									"",
+									"if (response.data?.createCategory?.id) {",
+									"    pm.collectionVariables.set(\"newCategoryId\", response.data.createCategory.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation CreateCategory($input: CreateCategoryInput!) { createCategory(input: $input) { id name slug } }",
+								"variables": "{ \"input\": { \"name\": \"Test Category\", \"slug\": \"test-category\", \"description\": \"Created by test suite\" } }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Mechanic",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Mechanic created\", () => {",
+									"    pm.expect(response.data.createMechanic).to.be.an('object');",
+									"});",
+									"",
+									"if (response.data?.createMechanic?.id) {",
+									"    pm.collectionVariables.set(\"newMechanicId\", response.data.createMechanic.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation CreateMechanic($input: CreateMechanicInput!) { createMechanic(input: $input) { id name slug } }",
+								"variables": "{ \"input\": { \"name\": \"Test Mechanic\", \"slug\": \"test-mechanic\", \"description\": \"Test mechanic\" } }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Designer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Designer created\", () => {",
+									"    pm.expect(response.data.createDesigner).to.be.an('object');",
+									"});",
+									"",
+									"if (response.data?.createDesigner?.id) {",
+									"    pm.collectionVariables.set(\"newDesignerId\", response.data.createDesigner.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation CreateDesigner($input: CreateDesignerInput!) { createDesigner(input: $input) { id name bio } }",
+								"variables": "{ \"input\": { \"name\": \"Test Designer\", \"bio\": \"Test bio\" } }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Game",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Game created with all relationships\", () => {",
+									"    pm.expect(response.data.createGame).to.be.an('object');",
+									"    pm.expect(response.data.createGame.name).to.equal('Test Game');",
+									"    pm.expect(response.data.createGame.categories.length).to.be.greaterThan(0);",
+									"    pm.expect(response.data.createGame.mechanics.length).to.be.greaterThan(0);",
+									"    pm.expect(response.data.createGame.designers.length).to.be.greaterThan(0);",
+									"});",
+									"",
+									"if (response.data?.createGame?.id) {",
+									"    pm.collectionVariables.set(\"newGameId\", response.data.createGame.id);",
+									"    console.log(\"✓ Created game with all relationships\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation CreateGame($input: CreateGameInput!) { createGame(input: $input) { id name price publisher { name } categories { name } mechanics { name } designers { name } } }",
+								"variables": "{ \"input\": { \"name\": \"Test Game\", \"description\": \"Test game description\", \"minPlayers\": 2, \"maxPlayers\": 4, \"playtime\": 60, \"price\": 49.99, \"stock\": 10, \"publisherId\": \"{{newPublisherId}}\", \"categoryIds\": [\"{{newCategoryId}}\"], \"mechanicIds\": [\"{{newMechanicId}}\"], \"designerIds\": [\"{{newDesignerId}}\"] } }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Game",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Game updated\", () => {",
+									"    pm.expect(response.data.updateGame.price).to.equal(39.99);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation UpdateGame($id: ID!, $input: UpdateGameInput!) { updateGame(id: $id, input: $input) { id name price stock } }",
+								"variables": "{ \"id\": \"{{newGameId}}\", \"input\": { \"price\": 39.99, \"stock\": 20 } }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Order status updated\", () => {",
+									"    pm.expect(response.data.updateOrderStatus.status).to.equal('SHIPPED');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation UpdateOrderStatus($orderId: ID!, $input: UpdateOrderStatusInput!) { updateOrderStatus(orderId: $orderId, input: $input) { id orderNumber status } }",
+								"variables": "{ \"orderId\": \"{{orderId}}\", \"input\": { \"status\": \"SHIPPED\" } }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "06-Cleanup",
+			"item": [
+				{
+					"name": "Delete Review",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Review deleted\", () => {",
+									"    pm.expect(response.data.deleteReview).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{customerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DeleteReview($id: ID!) { deleteReview(id: $id) }",
+								"variables": "{ \"id\": \"{{newReviewId}}\" }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear Cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Cart cleared\", () => {",
+									"    pm.expect(response.data.clearCart).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{customerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation { clearCart }",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Game (Admin)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Game deleted\", () => {",
+									"    pm.expect(response.data.deleteGame).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DeleteGame($id: ID!) { deleteGame(id: $id) }",
+								"variables": "{ \"id\": \"{{newGameId}}\" }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Publisher (Admin)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Publisher deleted\", () => {",
+									"    pm.expect(response.data.deletePublisher).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DeletePublisher($id: ID!) { deletePublisher(id: $id) }",
+								"variables": "{ \"id\": \"{{newPublisherId}}\" }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category (Admin)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Category deleted\", () => {",
+									"    pm.expect(response.data.deleteCategory).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DeleteCategory($id: ID!) { deleteCategory(id: $id) }",
+								"variables": "{ \"id\": \"{{newCategoryId}}\" }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Mechanic (Admin)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Mechanic deleted\", () => {",
+									"    pm.expect(response.data.deleteMechanic).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DeleteMechanic($id: ID!) { deleteMechanic(id: $id) }",
+								"variables": "{ \"id\": \"{{newMechanicId}}\" }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Designer (Admin)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.test(\"Designer deleted\", () => {",
+									"    pm.expect(response.data.deleteDesigner).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DeleteDesigner($id: ID!) { deleteDesigner(id: $id) }",
+								"variables": "{ \"id\": \"{{newDesignerId}}\" }"
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://localhost:4000",
+			"type": "default"
+		},
+		{
+			"key": "customerToken",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "adminToken",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "customerId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "adminId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "gameId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "publisherId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "categoryId1",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "categoryId2",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "categorySlug",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "mechanicId1",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "mechanicId2",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "mechanicSlug",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "designerId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "reviewId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "newReviewId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "cartItemId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "orderId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "newGameId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "newPublisherId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "newCategoryId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "newMechanicId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "newDesignerId",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
