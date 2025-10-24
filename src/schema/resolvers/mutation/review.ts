@@ -37,6 +37,7 @@ export const createReviewResolver: MutationResolvers['createReview'] = async (
       userId: user!.id,
       gameId: input.gameId,
       rating: input.rating,
+      title: input.title ?? undefined,
       comment: input.comment ?? undefined,
     },
   });
@@ -69,6 +70,7 @@ export const updateReviewResolver: MutationResolvers['updateReview'] = async (
 
   const data: Record<string, any> = {};
   if (input.rating != null) data.rating = input.rating;
+  if (input.title !== undefined) data.title = input.title;
   if (input.comment !== undefined) data.comment = input.comment;
 
   return prisma.review.update({
