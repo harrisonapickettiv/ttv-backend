@@ -25,7 +25,7 @@ export const createDesignerResolver: MutationResolvers['createDesigner'] = async
   return prisma.designer.create({
     data: {
       name: input.name,
-      slug: input.slug,
+      website: input.website ?? undefined,
       bio: input.bio ?? undefined,
     },
   });
@@ -40,7 +40,7 @@ export const updateDesignerResolver: MutationResolvers['updateDesigner'] = async
 
   const data: Record<string, any> = {};
   if (input.name != null) data.name = input.name;
-  if (input.slug != null) data.slug = input.slug;
+  if (input.website !== undefined) data.website = input.website;
   if (input.bio !== undefined) data.bio = input.bio;
 
   return prisma.designer.update({
