@@ -13,6 +13,7 @@ import { userResolver } from './user.js';
 import { meResolver } from './me.js';
 import { reviewResolver } from './review.js';
 import { reviewsResolver } from './reviews.js';
+import { myReviewsResolver } from './myReviews.js';
 import { myCartResolver } from './myCart.js';
 import { orderResolver } from './order.js';
 import { myOrdersResolver } from './myOrders.js';
@@ -33,6 +34,7 @@ export const Query = {
   me: meResolver,
   review: reviewResolver,
   reviews: reviewsResolver,
+  myReviews: myReviewsResolver,
   myCart: myCartResolver,
   order: orderResolver,
   myOrders: myOrdersResolver,
