@@ -18,3 +18,29 @@ export const userResolver: QueryResolvers['user'] = async (
 
   return user;
 };
+
+export const usersResolver: QueryResolvers['users'] = async (
+  _parent,
+  _args,
+  { prisma, user }
+) => {
+  // Check authentication
+  if (!user) {
+    throw new GraphQLError('You must be logged in to view users', {
+      extensions: { code: 'UNAUTHENTICATED' },
+    });
+  }
+
+  // Check if user is admin
+  if (user.role !== 'ADMIN') {
+    throw new GraphQLError('Only administrators can view all users', {
+      extensions: { code: 'FORBIDDEN' },
+    });
+  }
+
+  const users = await prisma.user.findMany({
+    orderBy: { createdAt: 'desc' },
+  });
+
+  return users;
+};

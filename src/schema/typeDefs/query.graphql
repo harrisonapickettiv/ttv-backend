@@ -25,6 +25,7 @@ type Query {
   # Users (require authentication)
   me: User
   user(id: ID!): User
+  users: [User!]! # admin only
 
   # Reviews
   review(id: ID!): Review
