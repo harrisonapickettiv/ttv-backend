@@ -11,6 +11,14 @@ async function hashPassword(password: string): Promise<string> {
 async function main() {
   console.log('🌱 Starting seed...');
 
+  // Demo Account Credentials
+  // 🔗 KEEP IN SYNC WITH FRONTEND: ttv-frontend/src/constants/demo.ts
+  // These credentials are hardcoded in both repos and must be manually synchronized
+  const DEMO_ADMIN_EMAIL = 'demo.admin@tabletopvault.com';
+  const DEMO_ADMIN_PASSWORD = 'demo123';
+  const DEMO_CUSTOMER_EMAIL = 'demo.customer@tabletopvault.com';
+  const DEMO_CUSTOMER_PASSWORD = 'demo123';
+
   // Clear existing data (in correct order due to foreign keys)
   console.log('🧹 Cleaning database...');
   await prisma.orderItem.deleteMany();
@@ -242,7 +250,7 @@ async function main() {
         price: 64.99,
         stock: 25,
         imageUrl:
-          'https://cf.geekdo-images.com/yLZJCVLlIx4c7eJEWUNJ7w__imagepage/img/uIjeoKgHMcRtzRSR4MoUYl3nXxs=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4458123.jpg',
+          'https://placehold.co/600x400/4A90E2/ffffff?text=Wingspan',
         publisherId: publishers[0].id,
       },
     }),
@@ -258,7 +266,7 @@ async function main() {
         price: 89.99,
         stock: 15,
         imageUrl:
-          'https://cf.geekdo-images.com/7k_nOxpO9OGIjhLq2BUZdA__imagepage/img/rMNa0k05IDFVxUKvKk5ejR9oI0w=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3163924.jpg',
+          'https://placehold.co/600x400/8B4513/ffffff?text=Scythe',
         publisherId: publishers[0].id,
       },
     }),
@@ -274,7 +282,7 @@ async function main() {
         price: 59.99,
         stock: 20,
         imageUrl:
-          'https://cf.geekdo-images.com/l_PRza2exNemFY66e5r2Yg__imagepage/img/VguO_LYQF2iUlU1uMfsSFOCbyXc=/fit-in/900x600/filters:no_upscale():strip_icc()/pic2649952.jpg',
+          'https://placehold.co/600x400/722F37/ffffff?text=Viticulture',
         publisherId: publishers[0].id,
       },
     }),
@@ -290,7 +298,7 @@ async function main() {
         price: 24.99,
         stock: 50,
         imageUrl:
-          'https://cf.geekdo-images.com/F_KDEu0GjdClml8N7c8Imw__imagepage/img/rc_Do8f5v41nWEGcwHE1eKAkIfI=/fit-in/900x600/filters:no_upscale():strip_icc()/pic2582929.jpg',
+          'https://placehold.co/600x400/FF6B6B/ffffff?text=Codenames',
         publisherId: publishers[1].id,
       },
     }),
@@ -306,7 +314,7 @@ async function main() {
         price: 39.99,
         stock: 40,
         imageUrl:
-          'https://cf.geekdo-images.com/S3ybV1LAp-8LHs9rDfjP2A__imagepage/img/kIBu-2Ljb_ml5n-S8uIbE6ehGFc=/fit-in/900x600/filters:no_upscale():strip_icc()/pic1534148.jpg',
+          'https://placehold.co/600x400/2ECC71/ffffff?text=Pandemic',
         publisherId: publishers[3].id,
       },
     }),
@@ -322,7 +330,7 @@ async function main() {
         price: 34.99,
         stock: 35,
         imageUrl:
-          'https://cf.geekdo-images.com/Z3upN53-fsVPUDimN9SpOA__imagepage/img/sT0kjr-Klona2rygvD8kURJgqdU=/fit-in/900x600/filters:no_upscale():strip_icc()/pic2337577.jpg',
+          'https://placehold.co/600x400/228B22/ffffff?text=Carcassonne',
         publisherId: publishers[3].id,
       },
     }),
@@ -338,7 +346,7 @@ async function main() {
         price: 54.99,
         stock: 45,
         imageUrl:
-          'https://cf.geekdo-images.com/ZWJg0dCdrWHxVnc0eFXK8w__imagepage/img/XmSM8jM5ZS-2FhDxsXeHpQcYieo=/fit-in/900x600/filters:no_upscale():strip_icc()/pic66668.jpg',
+          'https://placehold.co/600x400/DC143C/ffffff?text=Ticket+to+Ride',
         publisherId: publishers[4].id,
       },
     }),
@@ -354,7 +362,7 @@ async function main() {
         price: 49.99,
         stock: 28,
         imageUrl:
-          'https://cf.geekdo-images.com/35h9Za_JvMMMtx_92kT0Jg__imagepage/img/d0VespO3spaKqnX2oyL6vBRW71E=/fit-in/900x600/filters:no_upscale():strip_icc()/pic7149798.jpg',
+          'https://placehold.co/600x400/DAA520/ffffff?text=7+Wonders',
         publisherId: publishers[5].id,
       },
     }),
@@ -487,90 +495,73 @@ async function main() {
     }),
   ]);
 
-  // Create Users
-  console.log('👤 Creating users...');
+  // Create Demo Users
+  console.log('👤 Creating demo users...');
   const users = await Promise.all([
+    // Demo Admin Account - for testing admin features
     prisma.user.create({
       data: {
-        email: 'admin@tabletopvault.com',
-        passwordHash: await hashPassword('admin123'),
-        firstName: 'Admin',
-        lastName: 'User',
+        email: DEMO_ADMIN_EMAIL,
+        passwordHash: await hashPassword(DEMO_ADMIN_PASSWORD),
+        firstName: 'Demo',
+        lastName: 'Admin',
         role: 'ADMIN',
       },
     }),
+    // Demo Customer Account - for testing customer features
     prisma.user.create({
       data: {
-        email: 'alice@example.com',
-        passwordHash: await hashPassword('password123'),
-        firstName: 'Alice',
-        lastName: 'Johnson',
-        role: 'CUSTOMER',
-      },
-    }),
-    prisma.user.create({
-      data: {
-        email: 'bob@example.com',
-        passwordHash: await hashPassword('password123'),
-        firstName: 'Bob',
-        lastName: 'Smith',
+        email: DEMO_CUSTOMER_EMAIL,
+        passwordHash: await hashPassword(DEMO_CUSTOMER_PASSWORD),
+        firstName: 'Demo',
+        lastName: 'Customer',
         role: 'CUSTOMER',
       },
     }),
   ]);
-  console.log(`✅ Created ${users.length} users`);
+  console.log(`✅ Created ${users.length} demo users`);
 
-  // Create Reviews
+  // Create Reviews (from demo customer)
   console.log('⭐ Creating reviews...');
   const reviews = await Promise.all([
-    // Alice reviews Wingspan
+    // Demo Customer reviews Wingspan
     prisma.review.create({
       data: {
         rating: 5,
         title: 'Beautiful game!',
         comment: 'Amazing theme and gameplay. My favorite engine builder.',
-        userId: users[1].id,
+        userId: users[1].id, // Demo Customer
         gameId: games[0].id,
       },
     }),
-    // Bob reviews Wingspan
-    prisma.review.create({
-      data: {
-        rating: 4,
-        title: 'Great for families',
-        comment: 'Easy to teach and really engaging.',
-        userId: users[2].id,
-        gameId: games[0].id,
-      },
-    }),
-    // Alice reviews Pandemic
+    // Demo Customer reviews Pandemic
     prisma.review.create({
       data: {
         rating: 5,
         title: 'Best co-op game',
         comment: 'Perfect for game night with friends.',
-        userId: users[1].id,
+        userId: users[1].id, // Demo Customer
         gameId: games[4].id,
       },
     }),
-    // Bob reviews 7 Wonders
+    // Demo Customer reviews 7 Wonders
     prisma.review.create({
       data: {
         rating: 4,
         title: 'Quick and fun',
         comment: 'Love the card drafting mechanism.',
-        userId: users[2].id,
+        userId: users[1].id, // Demo Customer
         gameId: games[7].id,
       },
     }),
   ]);
   console.log(`✅ Created ${reviews.length} reviews`);
 
-  // Create Carts
+  // Create Cart for Demo Customer
   console.log('🛒 Creating carts...');
-  const aliceCart = await prisma.cart.create({
+  await prisma.cart.create({
     data: {
-      userId: users[1].id,
+      userId: users[1].id, // Demo Customer
       items: {
         create: [
           { gameId: games[1].id, quantity: 1 }, // Scythe
@@ -579,18 +570,18 @@ async function main() {
       },
     },
   });
-  console.log(`✅ Created cart for Alice with 2 items`);
+  console.log(`✅ Created cart for Demo Customer with 2 items`);
 
-  // Create Orders
+  // Create Orders for Demo Customer
   console.log('📦 Creating orders...');
-  const order1 = await prisma.order.create({
+  await prisma.order.create({
     data: {
       orderNumber: 'ORD-2024-001',
       status: 'DELIVERED',
-      totalAmount: 104.98, // Wingspan + Codenames
-      userId: users[1].id,
-      shippingName: 'Alice Johnson',
-      shippingAddress: '123 Main St',
+      totalAmount: 89.98, // Wingspan + Codenames
+      userId: users[1].id, // Demo Customer
+      shippingName: 'Demo Customer',
+      shippingAddress: '123 Demo Street',
       shippingCity: 'Portland',
       shippingState: 'OR',
       shippingZip: '97201',
@@ -612,17 +603,17 @@ async function main() {
     },
   });
 
-  const order2 = await prisma.order.create({
+  await prisma.order.create({
     data: {
       orderNumber: 'ORD-2024-002',
       status: 'PROCESSING',
       totalAmount: 39.99,
-      userId: users[2].id,
-      shippingName: 'Bob Smith',
-      shippingAddress: '456 Oak Ave',
-      shippingCity: 'Seattle',
-      shippingState: 'WA',
-      shippingZip: '98101',
+      userId: users[1].id, // Demo Customer
+      shippingName: 'Demo Customer',
+      shippingAddress: '123 Demo Street',
+      shippingCity: 'Portland',
+      shippingState: 'OR',
+      shippingZip: '97201',
       shippingCountry: 'USA',
       items: {
         create: [
@@ -635,7 +626,7 @@ async function main() {
       },
     },
   });
-  console.log(`✅ Created 2 orders`);
+  console.log(`✅ Created 2 orders for Demo Customer`);
 
   console.log('');
   console.log('📊 Seed Summary:');
