@@ -4,6 +4,6 @@ type Publisher {
   country: String
   website: String
   games: [Game!]!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }

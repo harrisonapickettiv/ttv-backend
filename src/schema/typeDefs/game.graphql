@@ -16,6 +16,6 @@ type Game {
   reviews: [Review!]!
   averageRating: Float
   reviewCount: Int!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }

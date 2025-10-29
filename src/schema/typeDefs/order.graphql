@@ -19,8 +19,8 @@ type Order {
   shippingState: String!
   shippingZip: String!
   shippingCountry: String!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type OrderItem {
@@ -29,6 +29,6 @@ type OrderItem {
   priceAtTime: Float!
   order: Order!
   game: Game!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }

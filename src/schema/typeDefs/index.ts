@@ -9,6 +9,7 @@ const loadGraphQL = (filename: string) =>
   readFileSync(join(__dirname, filename), 'utf-8');
 
 export const typeDefs = [
+  loadGraphQL('scalar.graphql'),
   loadGraphQL('query.graphql'),
   loadGraphQL('mutation.graphql'),
   loadGraphQL('game.graphql'),

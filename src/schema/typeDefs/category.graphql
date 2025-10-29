@@ -4,6 +4,6 @@ type Category {
   slug: String!
   description: String
   games: [Game!]!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
