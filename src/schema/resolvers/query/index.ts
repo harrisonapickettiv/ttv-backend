@@ -9,7 +9,7 @@ import { mechanicResolver } from './mechanic.js';
 import { mechanicsResolver } from './mechanics.js';
 import { designerResolver } from './designer.js';
 import { designersResolver } from './designers.js';
-import { userResolver } from './user.js';
+import { userResolver, usersResolver } from './user.js';
 import { meResolver } from './me.js';
 import { reviewResolver } from './review.js';
 import { reviewsResolver } from './reviews.js';
@@ -31,6 +31,7 @@ export const Query = {
   designer: designerResolver,
   designers: designersResolver,
   user: userResolver,
+  users: usersResolver,
   me: meResolver,
   review: reviewResolver,
   reviews: reviewsResolver,

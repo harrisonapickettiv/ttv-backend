@@ -11,6 +11,8 @@ import {
 import {
   registerResolver,
   loginResolver,
+  updateUserResolver,
+  deleteUserResolver,
 } from './auth.js';
 import {
   createCategoryResolver,
@@ -48,6 +50,10 @@ export const Mutation = {
   // Auth
   register: registerResolver,
   login: loginResolver,
+
+  // User management
+  updateUser: updateUserResolver,
+  deleteUser: deleteUserResolver,
 
   // Game
   createGame: createGameResolver,

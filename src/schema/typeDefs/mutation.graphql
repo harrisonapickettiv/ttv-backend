@@ -98,6 +98,14 @@ input LoginInput {
   password: String!
 }
 
+input UpdateUserInput {
+  email: String
+  firstName: String
+  lastName: String
+  role: UserRole
+  password: String
+}
+
 # Review inputs
 input CreateReviewInput {
   gameId: ID!
@@ -154,6 +162,10 @@ type Mutation {
   # Authentication
   register(input: RegisterInput!): AuthPayload!
   login(input: LoginInput!): AuthPayload!
+
+  # User management (admin only)
+  updateUser(id: ID!, input: UpdateUserInput!): User!
+  deleteUser(id: ID!): Boolean!
 
   # Game mutations (admin only)
   createGame(input: CreateGameInput!): Game!
