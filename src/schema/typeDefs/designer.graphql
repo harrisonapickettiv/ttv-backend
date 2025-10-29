@@ -4,6 +4,6 @@ type Designer {
   bio: String
   website: String
   games: [Game!]!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }

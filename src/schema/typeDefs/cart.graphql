@@ -2,8 +2,8 @@ type Cart {
   id: ID!
   user: User!
   items: [CartItem!]!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type CartItem {
@@ -11,6 +11,6 @@ type CartItem {
   quantity: Int!
   cart: Cart!
   game: Game!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }

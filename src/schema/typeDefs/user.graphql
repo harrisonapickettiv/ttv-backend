@@ -12,6 +12,6 @@ type User {
   reviews: [Review!]!
   cart: Cart
   orders: [Order!]!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
