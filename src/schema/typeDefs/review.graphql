@@ -3,8 +3,8 @@ type Review {
   rating: Int!
   title: String
   comment: String
-  user: User!
-  game: Game!
+  user: User
+  game: Game
   createdAt: DateTime!
   updatedAt: DateTime!
 }

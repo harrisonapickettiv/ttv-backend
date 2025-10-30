@@ -1,4 +1,4 @@
-import { PrismaClient } from './generated/prisma';
+import { PrismaClient } from './generated/prisma/index.js';
 import DataLoader from 'dataloader';
 import type {
   Game,
@@ -9,10 +9,8 @@ import type {
   User,
   Review,
   Cart,
-  CartItem,
   Order,
-  OrderItem,
-} from './generated/prisma';
+} from './generated/prisma/index.js';
 
 // Allow passing in a custom Prisma client (for testing)
 const globalPrisma = new PrismaClient();
@@ -74,6 +72,8 @@ interface PrismaClientLike {
     create: (args: any) => Promise<any>;
     update: (args: any) => Promise<any>;
     delete: (args: any) => Promise<any>;
+    aggregate: (args: any) => Promise<any>;
+    count: (args: any) => Promise<number>;
   };
   cart: {
     findMany: (args?: any) => Promise<any[]>;
@@ -107,6 +107,21 @@ interface PrismaClientLike {
     create: (args: any) => Promise<any>;
     update: (args: any) => Promise<any>;
     delete: (args: any) => Promise<any>;
+  };
+  gameCategory: {
+    findMany: (args?: any) => Promise<any[]>;
+    create: (args: any) => Promise<any>;
+    deleteMany: (args: any) => Promise<any>;
+  };
+  gameMechanic: {
+    findMany: (args?: any) => Promise<any[]>;
+    create: (args: any) => Promise<any>;
+    deleteMany: (args: any) => Promise<any>;
+  };
+  gameDesigner: {
+    findMany: (args?: any) => Promise<any[]>;
+    create: (args: any) => Promise<any>;
+    deleteMany: (args: any) => Promise<any>;
   };
 }
 
@@ -200,3 +215,5 @@ export const createContext = (
     },
   };
 };
+
+export type Context = GraphQLContext;

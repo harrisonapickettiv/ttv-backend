@@ -9,7 +9,7 @@ type Game {
   stock: Int!
   imageUrl: String
   publisherId: ID!
-  publisher: Publisher!
+  publisher: Publisher
   categories: [Category!]!
   mechanics: [Mechanic!]!
   designers: [Designer!]!

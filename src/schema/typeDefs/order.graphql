@@ -11,7 +11,7 @@ type Order {
   orderNumber: String!
   status: OrderStatus!
   totalAmount: Float!
-  user: User!
+  user: User
   items: [OrderItem!]!
   shippingName: String!
   shippingAddress: String!
@@ -27,8 +27,8 @@ type OrderItem {
   id: ID!
   quantity: Int!
   priceAtTime: Float!
-  order: Order!
-  game: Game!
+  order: Order
+  game: Game
   createdAt: DateTime!
   updatedAt: DateTime!
 }
