@@ -19,14 +19,13 @@ type Query {
   mechanics: [Mechanic!]!
 
   # Designers
-  designer(id: ID!): Designer
+  designer(id: ID, slug: String): Designer
   designers: [Designer!]!
 
   # Users (require authentication)
   me: User
   user(id: ID!): User
   users: [User!]! # admin only
-
   # Reviews
   review(id: ID!): Review
   reviews(gameId: ID): [Review!]!

@@ -1,7 +1,7 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
-import { typeDefs } from './schema/typeDefs';
-import { resolvers } from './schema/resolvers';
+import { typeDefs } from './schema/typeDefs/index.js';
+import { resolvers } from './schema/resolvers/index.js';
 import { PrismaClient } from './generated/prisma/index.js';
 import { createContext } from './context.js';
 import jwt from 'jsonwebtoken';
@@ -19,7 +19,9 @@ const { url } = await startStandaloneServer(server, {
   context: async ({ req }) => {
     // Extract token from Authorization header
     const authHeader = req.headers.authorization || '';
-    const token = authHeader.startsWith('Bearer ') ? authHeader.substring(7) : null;
+    const token = authHeader.startsWith('Bearer ')
+      ? authHeader.substring(7)
+      : null;
 
     let user = null;
 

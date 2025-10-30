@@ -1,6 +1,6 @@
 type Cart {
   id: ID!
-  user: User!
+  user: User
   items: [CartItem!]!
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -9,8 +9,8 @@ type Cart {
 type CartItem {
   id: ID!
   quantity: Int!
-  cart: Cart!
-  game: Game!
+  cart: Cart
+  game: Game
   createdAt: DateTime!
   updatedAt: DateTime!
 }
