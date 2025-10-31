@@ -22,7 +22,7 @@ export async function seedGames(
         price: 64.99,
         stock: 25,
         imageUrl:
-          'https://placehold.co/600x400/4A90E2/ffffff?text=Wingspan',
+          'https://cf.geekdo-images.com/yLZJCVLlIx4c7eJEWUNJ7w__itemrep/img/DR7181wU4sHT6gn6Q1XccpPxNHg=/fit-in/246x300/filters:strip_icc()/pic4458123.jpg',
         publisherId: publishers[0].id,
       },
     }),
@@ -37,7 +37,8 @@ export async function seedGames(
         playtime: 115,
         price: 89.99,
         stock: 15,
-        imageUrl: 'https://placehold.co/600x400/8B4513/ffffff?text=Scythe',
+        imageUrl:
+          'https://cf.geekdo-images.com/7k_nOxpO9OGIjhLq2BUZdA__imagepage/img/zoz-t_z9nqqxL7OwQenbqp9PRl8=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3163924.jpg',
         publisherId: publishers[0].id,
       },
     }),
@@ -53,7 +54,7 @@ export async function seedGames(
         price: 59.99,
         stock: 20,
         imageUrl:
-          'https://placehold.co/600x400/722F37/ffffff?text=Viticulture',
+          'https://cf.geekdo-images.com/l_PRU2lVlX9seScRFcvFlA__imagepage/img/SWmCgt3LzSd05GPn6EW-Yr0m8aE=/fit-in/900x600/filters:no_upscale():strip_icc()/pic6500949.jpg',
         publisherId: publishers[0].id,
       },
     }),
@@ -69,7 +70,7 @@ export async function seedGames(
         price: 24.99,
         stock: 50,
         imageUrl:
-          'https://placehold.co/600x400/FF6B6B/ffffff?text=Codenames',
+          'https://cf.geekdo-images.com/nC6ifPCDnAItwoKSKXVrnw__imagepage/img/o_eM1W7Ads5CAeQP97zLeN1n4fM=/fit-in/900x600/filters:no_upscale():strip_icc()/pic8907965.jpg',
         publisherId: publishers[1].id,
       },
     }),
@@ -85,7 +86,7 @@ export async function seedGames(
         price: 39.99,
         stock: 40,
         imageUrl:
-          'https://placehold.co/600x400/2ECC71/ffffff?text=Pandemic',
+          'https://cf.geekdo-images.com/S3ybV1LAp-8SnHIXLLjVqA__imagepage/img/kIBu-2Ljb_ml5n-S8uIbE6ehGFc=/fit-in/900x600/filters:no_upscale():strip_icc()/pic1534148.jpg',
         publisherId: publishers[3].id,
       },
     }),
@@ -101,7 +102,7 @@ export async function seedGames(
         price: 34.99,
         stock: 35,
         imageUrl:
-          'https://placehold.co/600x400/228B22/ffffff?text=Carcassonne',
+          'https://cf.geekdo-images.com/Z3upN53-fsVPUDimN9SpOA__itemrep/img/sT0kjr-Klona2rygvD8kURJgqdU=/fit-in/246x300/filters:strip_icc()/pic2337577.jpg',
         publisherId: publishers[3].id,
       },
     }),
@@ -117,7 +118,7 @@ export async function seedGames(
         price: 54.99,
         stock: 45,
         imageUrl:
-          'https://placehold.co/600x400/DC143C/ffffff?text=Ticket+to+Ride',
+          'https://cf.geekdo-images.com/kdWYkW-7AqG63HhqPL6ekA__imagepage/img/AWsdGNNSuI78BaCPAVQpjrUneKY=/fit-in/900x600/filters:no_upscale():strip_icc()/pic8937637.jpg',
         publisherId: publishers[4].id,
       },
     }),
@@ -133,7 +134,7 @@ export async function seedGames(
         price: 49.99,
         stock: 28,
         imageUrl:
-          'https://placehold.co/600x400/DAA520/ffffff?text=7+Wonders',
+          'https://cf.geekdo-images.com/35h9Za_JvMMMtx_92kT0Jg__imagepage/img/WKlTys0Dc3F6x9r05Fwyvs82tz4=/fit-in/900x600/filters:no_upscale():strip_icc()/pic7149798.jpg',
         publisherId: publishers[5].id,
       },
     }),
@@ -150,7 +151,8 @@ export async function seedGames(
         playtime: 45,
         price: 39.99,
         stock: 42,
-        imageUrl: 'https://placehold.co/600x400/4169E1/ffffff?text=Azul',
+        imageUrl:
+          'https://cf.geekdo-images.com/aPSHJO0d0XOpQR5X-wJonw__imagepage/img/q4uWd2nXGeEkKDR8Cc3NhXG9PEU=/fit-in/900x600/filters:no_upscale():strip_icc()/pic6973671.png',
         publisherId: publishers[13].id,
       },
     }),
@@ -166,7 +168,7 @@ export async function seedGames(
         price: 39.99,
         stock: 38,
         imageUrl:
-          'https://placehold.co/600x400/8B008B/ffffff?text=Splendor',
+          'https://cf.geekdo-images.com/vNFe4JkhKAERzi4T0Ntwpw__imagepage/img/JXnPzdgTeDkRrxESA86gnCw4Zws=/fit-in/900x600/filters:no_upscale():strip_icc()/pic8234167.png',
         publisherId: publishers[8].id,
       },
     }),
@@ -181,7 +183,7 @@ export async function seedGames(
         playtime: 60,
         price: 49.99,
         stock: 55,
-        imageUrl: 'https://placehold.co/600x400/CD853F/ffffff?text=Catan',
+        imageUrl: 'https://cf.geekdo-images.com/W3Bsga_uLP9kO91gZ7H8yw__itemrep/img/IzYEUm_gWFuRFOL8gQYqGm5gU6A=/fit-in/246x300/filters:strip_icc()/pic2419375.jpg',
         publisherId: publishers[8].id,
       },
     }),
@@ -197,7 +199,7 @@ export async function seedGames(
         price: 69.99,
         stock: 22,
         imageUrl:
-          'https://placehold.co/600x400/FF4500/ffffff?text=Terraforming+Mars',
+          'https://cf.geekdo-images.com/wg9oOLcsKvDesSUdZQ4rxw__imagepage/img/FS1RE8Ue6nk1pNbPI3l-OSapQGc=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3536616.jpg',
         publisherId: publishers[12].id,
       },
     }),
@@ -213,7 +215,7 @@ export async function seedGames(
         price: 139.99,
         stock: 8,
         imageUrl:
-          'https://placehold.co/600x400/2F4F4F/ffffff?text=Gloomhaven',
+          'https://cf.geekdo-images.com/sZYp_3BTDGjh2unaZfZmuA__imagepage/img/pBaOL7vV402nn1I5dHsdSKsFHqA=/fit-in/900x600/filters:no_upscale():strip_icc()/pic2437871.jpg',
         publisherId: publishers[11].id,
       },
     }),
@@ -229,7 +231,7 @@ export async function seedGames(
         price: 44.99,
         stock: 30,
         imageUrl:
-          'https://placehold.co/600x400/FFD700/ffffff?text=Dominion',
+          'https://cf.geekdo-images.com/j6iQpZ4XkemZP07HNCODBA__imagepage/img/bbKggiASKA1E8sAh2cH07czaGn4=/fit-in/900x600/filters:no_upscale():strip_icc()/pic394356.jpg',
         publisherId: publishers[7].id,
       },
     }),
@@ -245,7 +247,7 @@ export async function seedGames(
         price: 39.99,
         stock: 45,
         imageUrl:
-          'https://placehold.co/600x400/00FF00/ffffff?text=King+of+Tokyo',
+          'https://cf.geekdo-images.com/m_RzXpHURC0_xLkvRSR_sw__imagepage/img/oSNvtltDuWj3LP74IEFj8Ov2B0k=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3043734.jpg',
         publisherId: publishers[8].id,
       },
     }),
@@ -261,7 +263,7 @@ export async function seedGames(
         price: 59.99,
         stock: 18,
         imageUrl:
-          'https://placehold.co/600x400/228B22/ffffff?text=Everdell',
+          'https://cf.geekdo-images.com/fjE7V5LNq31yVEW_yuqI-Q__imagepage/img/ijYTk6KGtxLRdIvLsGar13ZHs4c=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3918905.png',
         publisherId: publishers[13].id,
       },
     }),
@@ -277,7 +279,7 @@ export async function seedGames(
         price: 39.99,
         stock: 28,
         imageUrl:
-          'https://placehold.co/600x400/FF69B4/ffffff?text=Sagrada',
+          'https://cf.geekdo-images.com/PZt3EAAGV3dFIVuwMR0AEw__imagepage/img/F8DS3hdZfVIcxVpPSZV7DMLrPJ4=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3525224.jpg',
         publisherId: publishers[13].id,
       },
     }),
@@ -293,7 +295,7 @@ export async function seedGames(
         price: 44.99,
         stock: 25,
         imageUrl:
-          'https://placehold.co/600x400/8B4513/ffffff?text=Castles+of+Burgundy',
+          'https://cf.geekdo-images.com/sH2YTQ10dHj1ibfS-KKtGA__imagepage/img/QSGsMsqLPGG3UkWNVH0ZECm3h6U=/fit-in/900x600/filters:no_upscale():strip_icc()/pic8745814.jpg',
         publisherId: publishers[6].id,
       },
     }),
@@ -309,7 +311,7 @@ export async function seedGames(
         price: 79.99,
         stock: 12,
         imageUrl:
-          'https://placehold.co/600x400/32CD32/ffffff?text=Ark+Nova',
+          'https://cf.geekdo-images.com/SoU8p28Sk1s8MSvoM4N8pQ__imagepage/img/qR1EvTSNPjDa-pNPGxU9HY2oKfs=/fit-in/900x600/filters:no_upscale():strip_icc()/pic6293412.jpg',
         publisherId: publishers[12].id,
       },
     }),
@@ -324,7 +326,8 @@ export async function seedGames(
         playtime: 90,
         price: 69.99,
         stock: 20,
-        imageUrl: 'https://placehold.co/600x400/8B4513/ffffff?text=Root',
+        imageUrl:
+          'https://cf.geekdo-images.com/JUAUWaVUzeBgzirhZNmHHw__imagepage/img/ZF-dta5ffawuKAkAt2LB-QTIv5M=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4254509.jpg',
         publisherId: publishers[14].id,
       },
     }),
@@ -340,7 +343,7 @@ export async function seedGames(
         price: 84.99,
         stock: 10,
         imageUrl:
-          'https://placehold.co/600x400/A0522D/ffffff?text=Brass+Birmingham',
+          'https://cf.geekdo-images.com/x3zxjr-Vw5iU4yDPg70Jgw__imagepage/img/-17KkOmxbTu2slJTabGrkO8ZW8s=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3490053.jpg',
         publisherId: publishers[12].id,
       },
     }),
@@ -356,7 +359,7 @@ export async function seedGames(
         price: 79.99,
         stock: 16,
         imageUrl:
-          'https://placehold.co/600x400/20B2AA/ffffff?text=Spirit+Island',
+          'https://cf.geekdo-images.com/kjCm4ZvPjIZxS-mYgSPy1g__imagepage/img/py7KzNjXVOuVesFZB7LwqCbvALY=/fit-in/900x600/filters:no_upscale():strip_icc()/pic7013651.jpg',
         publisherId: publishers[12].id,
       },
     }),
@@ -372,7 +375,7 @@ export async function seedGames(
         price: 59.99,
         stock: 18,
         imageUrl:
-          'https://placehold.co/600x400/8B4513/ffffff?text=Agricola',
+          'https://cf.geekdo-images.com/dDDo2Hexl80ucK1IlqTk-g__imagepage/img/TLgJgsf7CyGgl8RM2duUYOrE41E=/fit-in/900x600/filters:no_upscale():strip_icc()/pic831744.jpg',
         publisherId: publishers[9].id,
       },
     }),
@@ -388,7 +391,7 @@ export async function seedGames(
         price: 39.99,
         stock: 32,
         imageUrl:
-          'https://placehold.co/600x400/2E8B57/ffffff?text=Cascadia',
+          'https://cf.geekdo-images.com/MjeJZfulbsM1DSV3DrGJYA__imagepage/img/0ksox22FKLq-Z-rsbBlF2IDG9x0=/fit-in/900x600/filters:no_upscale():strip_icc()/pic5100691.jpg',
         publisherId: publishers[13].id,
       },
     }),
@@ -404,7 +407,7 @@ export async function seedGames(
         price: 69.99,
         stock: 14,
         imageUrl:
-          'https://placehold.co/600x400/DC143C/ffffff?text=Pandemic+Legacy',
+          'https://cf.geekdo-images.com/-Qer2BBPG7qGGDu6KcVDIw__imagepage/img/qZybAu8uJ9_sZlU2A65DIF6Y2Zw=/fit-in/900x600/filters:no_upscale():strip_icc()/pic2452831.png',
         publisherId: publishers[3].id,
       },
     }),
@@ -420,7 +423,7 @@ export async function seedGames(
         price: 149.99,
         stock: 5,
         imageUrl:
-          'https://placehold.co/600x400/000080/ffffff?text=Twilight+Imperium',
+          'https://cf.geekdo-images.com/_Ppn5lssO5OaildSE-FgFA__imagepage/img/0AK9hQgpcOOOLJh8IEZS3Nw57vE=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3727516.jpg',
         publisherId: publishers[2].id,
       },
     }),
@@ -436,7 +439,7 @@ export async function seedGames(
         price: 14.99,
         stock: 60,
         imageUrl:
-          'https://placehold.co/600x400/FF1493/ffffff?text=Love+Letter',
+          'https://cf.geekdo-images.com/T1ltXwapFUtghS9A7_tf4g__imagepage/img/wf3HgW2e24O0mcsB5OIHJnxaeIM=/fit-in/900x600/filters:no_upscale():strip_icc()/pic1401448.jpg',
         publisherId: publishers[3].id,
       },
     }),
@@ -452,7 +455,7 @@ export async function seedGames(
         price: 12.99,
         stock: 70,
         imageUrl:
-          'https://placehold.co/600x400/FF6347/ffffff?text=Sushi+Go',
+          'https://cf.geekdo-images.com/Fn3PSPZVxa3YurlorITQ1Q__imagepage/img/qD1BnVr1_QYh9Dwr2G6eXVqTdBs=/fit-in/900x600/filters:no_upscale():strip_icc()/pic1900075.jpg',
         publisherId: publishers[13].id,
       },
     }),
@@ -468,7 +471,7 @@ export async function seedGames(
         price: 19.99,
         stock: 48,
         imageUrl:
-          'https://placehold.co/600x400/00CED1/ffffff?text=Forbidden+Island',
+          'https://cf.geekdo-images.com/JgAkEBUaiHOsOS94iRMs2w__imagepage/img/Wlfw4ELGy7zqNoz13tCvbbFaEBQ=/fit-in/900x600/filters:no_upscale():strip_icc()/pic646458.jpg',
         publisherId: publishers[13].id,
       },
     }),
@@ -483,7 +486,8 @@ export async function seedGames(
         playtime: 60,
         price: 59.99,
         stock: 24,
-        imageUrl: 'https://placehold.co/600x400/8B0000/ffffff?text=Clank',
+        imageUrl:
+          'https://cf.geekdo-images.com/DPjV1iI0ygo5Bl3XLNRiIg__imagepage/img/R9z8w4GndbY-r3fG_LK1LvBvLc0=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4449526.jpg',
         publisherId: publishers[12].id,
       },
     }),
@@ -498,7 +502,8 @@ export async function seedGames(
         playtime: 15,
         price: 14.99,
         stock: 55,
-        imageUrl: 'https://placehold.co/600x400/4B0082/ffffff?text=Coup',
+        imageUrl:
+          'https://cf.geekdo-images.com/MWhSY_GOe2-bmlQ2rntSVg__imagepage/img/HPKaW4sG3jlaO3MM5V6x0Ks0DGI=/fit-in/900x600/filters:no_upscale():strip_icc()/pic2016054.jpg',
         publisherId: publishers[8].id,
       },
     }),
@@ -514,7 +519,7 @@ export async function seedGames(
         price: 69.99,
         stock: 15,
         imageUrl:
-          'https://placehold.co/600x400/DAA520/ffffff?text=Concordia',
+          'https://cf.geekdo-images.com/CzwSm8i7tkLz6cBnrILZBg__imagepage/img/wLKrQnpz-Udm23hoDBRjyKgHEvo=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3453267.jpg',
         publisherId: publishers[7].id,
       },
     }),
@@ -530,7 +535,7 @@ export async function seedGames(
         price: 49.99,
         stock: 26,
         imageUrl:
-          'https://placehold.co/600x400/483D8B/ffffff?text=Mysterium',
+          'https://cf.geekdo-images.com/1nQ3ZKudtDeAP7IiKE-kNg__imagepage/img/scbgJc5EdSpHJGxGbV9dgpxj9hQ=/fit-in/900x600/filters:no_upscale():strip_icc()/pic8625343.jpg',
         publisherId: publishers[8].id,
       },
     }),
@@ -546,7 +551,7 @@ export async function seedGames(
         price: 39.99,
         stock: 33,
         imageUrl:
-          'https://placehold.co/600x400/F4A460/ffffff?text=Camel+Up',
+          'https://cf.geekdo-images.com/jVr1bGBQpshqVPcwvZ7CPg__imagepage/img/izUYPKEp6La-pRe5SgA1TKhPSXM=/fit-in/900x600/filters:no_upscale():strip_icc()/pic1918028.jpg',
         publisherId: publishers[6].id,
       },
     }),
@@ -561,7 +566,8 @@ export async function seedGames(
         playtime: 30,
         price: 34.99,
         stock: 40,
-        imageUrl: 'https://placehold.co/600x400/FF69B4/ffffff?text=Dixit',
+        imageUrl:
+          'https://cf.geekdo-images.com/J0PlHArkZDJ57H-brXW2Fw__imagepage/img/j3bmkyVXJ2tOOXQzARtHqT__vzY=/fit-in/900x600/filters:no_upscale():strip_icc()/pic6738336.jpg',
         publisherId: publishers[8].id,
       },
     }),
@@ -577,7 +583,7 @@ export async function seedGames(
         price: 29.99,
         stock: 35,
         imageUrl:
-          'https://placehold.co/600x400/FF1493/ffffff?text=Patchwork',
+          'https://cf.geekdo-images.com/RDOwMRBnIb3Ehl6GyXj9xg__imagepage/img/neJ65_frO2klfRpV-lVY_j7C4tM=/fit-in/900x600/filters:no_upscale():strip_icc()/pic8669620.jpg',
         publisherId: publishers[9].id,
       },
     }),
@@ -592,7 +598,8 @@ export async function seedGames(
         playtime: 25,
         price: 12.99,
         stock: 50,
-        imageUrl: 'https://placehold.co/600x400/FF4500/ffffff?text=Hanabi',
+        imageUrl:
+          'https://cf.geekdo-images.com/JDVksMwfcqoem1k_xtZrOA__imagepage/img/dFQ1b2Tsr294dCsZYMrVNIgEumc=/fit-in/900x600/filters:no_upscale():strip_icc()/pic2007286.jpg',
         publisherId: publishers[8].id,
       },
     }),
@@ -607,7 +614,8 @@ export async function seedGames(
         playtime: 30,
         price: 24.99,
         stock: 38,
-        imageUrl: 'https://placehold.co/600x400/FF8C00/ffffff?text=Jaipur',
+        imageUrl:
+          'https://cf.geekdo-images.com/_LTujSe_o16nvjDC-J0seA__imagepage/img/X7qZxqheM7_ADLuPhC11b_9IhYw=/fit-in/900x600/filters:no_upscale():strip_icc()/pic5100947.jpg',
         publisherId: publishers[8].id,
       },
     }),
@@ -623,7 +631,7 @@ export async function seedGames(
         price: 49.99,
         stock: 22,
         imageUrl:
-          'https://placehold.co/600x400/8B0000/ffffff?text=Betrayal',
+          'https://cf.geekdo-images.com/lqmt2Oti_qJS65XqHcB8AA__imagepage/img/dxrUKI24svPBCJAcNqzHy_uayp4=/fit-in/900x600/filters:no_upscale():strip_icc()/pic5146864.png',
         publisherId: publishers[2].id,
       },
     }),
@@ -639,7 +647,7 @@ export async function seedGames(
         price: 59.99,
         stock: 28,
         imageUrl:
-          'https://placehold.co/600x400/9370DB/ffffff?text=Small+World',
+          'https://cf.geekdo-images.com/aoPM07XzoceB-RydLh08zA__imagepage/img/lHmv0ddOrUvpiLcPeQbZdT5yCEA=/fit-in/900x600/filters:no_upscale():strip_icc()/pic428828.jpg',
         publisherId: publishers[4].id,
       },
     }),
@@ -655,7 +663,7 @@ export async function seedGames(
         price: 39.99,
         stock: 30,
         imageUrl:
-          'https://placehold.co/600x400/FFD700/ffffff?text=El+Dorado',
+          'https://cf.geekdo-images.com/b5VyYjNfAxJ4Z-Dx2UWlqg__imagepage/img/oGGZLnPoBVdO4ZlNquRvuzaQmrU=/fit-in/900x600/filters:no_upscale():strip_icc()/pic7945692.jpg',
         publisherId: publishers[6].id,
       },
     }),
@@ -671,7 +679,7 @@ export async function seedGames(
         price: 39.99,
         stock: 34,
         imageUrl:
-          'https://placehold.co/600x400/D2691E/ffffff?text=Century',
+          'https://cf.geekdo-images.com/0_KEDk4lCvryf1Ju3YQJxA__imagepage/img/4pU8XNwimU2Dlx097R2Fd7PQxxI=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3339551.jpg',
         publisherId: publishers[13].id,
       },
     }),
@@ -687,7 +695,7 @@ export async function seedGames(
         price: 29.99,
         stock: 36,
         imageUrl:
-          'https://placehold.co/600x400/4169E1/ffffff?text=Santorini',
+          'https://cf.geekdo-images.com/665Ply7Ho1WVf1v1iZlWeg__imagepage/img/Nr9Q-qEAAPshoyVclz-Rb8q3-ZQ=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3283110.png',
         publisherId: publishers[12].id,
       },
     }),
@@ -703,7 +711,7 @@ export async function seedGames(
         price: 19.99,
         stock: 45,
         imageUrl:
-          'https://placehold.co/600x400/32CD32/ffffff?text=Kingdomino',
+          'https://cf.geekdo-images.com/c0m3gwZTcfKoLI63ASio8g__imagepage/img/k40CbVK1UuWeu3GZQGNwFNbGJVc=/fit-in/900x600/filters:no_upscale():strip_icc()/pic8443569.png',
         publisherId: publishers[13].id,
       },
     }),
